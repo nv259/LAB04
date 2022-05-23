@@ -7,11 +7,11 @@ string_open: 	.asciiz "a["
 string_close:	.asciiz "] = "
 escape_sequence:	.asciiz "\n"
 string_input_notification: 	.asciiz "NHAP CAC PHAN TU CUA MANG\n"
-string_output_sum: 	.asciiz "sum = "
-string_output_min: 	.asciiz "min = "
-string_output_max:	.asciiz "max = "
-string_output_even:	.asciiz "so cac phan tu chan: "
-string_output_odd:	.asciiz "so cac phan tu le: "
+string_output_sum: 	.asciiz "\tTong cac phan tu trong mang: "
+string_output_min: 	.asciiz "\tPhan tu nho nhat: "
+string_output_max:	.asciiz "\tPhan tu lon nhat: "
+string_output_even:	.asciiz "\tSo cac phan tu chan:  "
+string_output_odd:	.asciiz "\tSo cac phan tu le: "
 	.text
  main:
  	li	$t6, 1		
