@@ -7,14 +7,14 @@ string_open: 	.asciiz "a["
 string_close:	.asciiz "] = "
 escape_sequence:	.asciiz "\n"
 string_input_notification: 	.asciiz "NHAP CAC PHAN TU CUA MANG\n"
-string_output_sum: 	.asciiz "\tTong cac phan tu trong mang: "
-string_output_min: 	.asciiz "\tPhan tu nho nhat: "
-string_output_max:	.asciiz "\tPhan tu lon nhat: "
-string_output_even:	.asciiz "\tSo cac phan tu chan:  "
-string_output_odd:	.asciiz "\tSo cac phan tu le: "
+string_output_sum: 	.asciiz "\tsum = "
+string_output_min: 	.asciiz "\tmin = "
+string_output_max:	.asciiz "\tmax = "
+string_output_even:	.asciiz "\tso cac phan tu chan: "
+string_output_odd:	.asciiz "\tso cac phan tu le: "
 	.text
  main:
- 	li	$t6, 1		
+ 	li	$t6, 1		# constant value 1
  	li 	$t7, 101 	# over_size = 101, size >= over_size || size <= 0 => read_size_loop
  input:
 	 print_input_notification:
@@ -39,11 +39,10 @@ string_output_odd:	.asciiz "\tSo cac phan tu le: "
  		slt 	$t1, $s0, $t7	# size < 101 ?
  		beq 	$t1, $zero, input
  		
- 		slt 	$t1, $s0, $t6 	# size < 0 ?
+ 		slt 	$t1, $s0, $t6 	# size <= 0 ?
  		bne 	$t1, $zero, input
  	read_elements:
  		# index : $t1
- 		li 	$t9, 1 		# $t9 = 1
  		addi 	$t1, $zero, 0	# index $t1 = 0
  		la	$t3, array 	# load address to $t3
  		read_loop:
@@ -70,7 +69,7 @@ string_output_odd:	.asciiz "\tSo cac phan tu le: "
  				syscall 
  				add 	$t8, $zero, $v0
  				
- 				slt 	$t2, $t8, $t9	# arr[index] < 1 ?
+ 				slt 	$t2, $t8, $t6	# arr[index] < 1 ?
  				bne 	$t2, $zero, read_loop
  				
  				sw 	$t8, 0($t3)
