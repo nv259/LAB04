@@ -10,12 +10,12 @@ Viết chương trình Assembly thực hiện các yêu cầu sau:
 
 # Start at Mon, 5-23-2022
  
-Họ và tên: Nguyễn Việt Nhật
+Họ và tên: **Nguyễn Việt Nhật**
 
-MSSV: 21520378 - STT: 15
+MSSV: **21520378** - STT: **15**
 
-Lớp: KHTN2021
+Lớp: **KHTN2021**
 
-GVHD: Ths. Trương Văn Cương
+GVHD: **Ths. Trương Văn Cương**
 
 *Mô phỏng trên Mars 4.5*
