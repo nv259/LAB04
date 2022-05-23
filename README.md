@@ -18,4 +18,4 @@ Lớp: KHTN2021
 
 GVHD: Ths. Trương Văn Cương
 
-*Mô phỏng trên Mars 4.5
+*Mô phỏng trên Mars 4.5*
