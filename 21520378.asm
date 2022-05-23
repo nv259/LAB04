@@ -1,17 +1,20 @@
 	.data 
-array: 	.space 400
-string1: .asciiz "Nhap do dai mang: "
-string_element_open: 	.asciiz "Nhap a["
-string_element_close:	.asciiz "]: "
-string_open: 	.asciiz "a["
-string_close:	.asciiz "] = "
-escape_sequence:	.asciiz "\n"
+array: 				.space 400
+string1: 			.asciiz "Nhap do dai mang: "
+string_element_open: 		.asciiz "Nhap a["
+string_element_close:		.asciiz "]: "
+string_open: 			.asciiz "a["
+string_close:			.asciiz "] = "
+escape_sequence:		.asciiz "\n"
 string_input_notification: 	.asciiz "NHAP CAC PHAN TU CUA MANG\n"
-string_output_sum: 	.asciiz "\tsum = "
-string_output_min: 	.asciiz "\tmin = "
-string_output_max:	.asciiz "\tmax = "
-string_output_even:	.asciiz "\tso cac phan tu chan: "
-string_output_odd:	.asciiz "\tso cac phan tu le: "
+string_output_notification:	.asciiz "CAC PHAN TU CUA MANG: "
+string_output_sum: 		.asciiz "1. Tong cac phan tu: "
+string_output_min: 		.asciiz "2. Phan tu nho nhat: "
+string_output_max:		.asciiz "3. Phan tu lon nhat: "
+string_output_even:		.asciiz "4. So cac phan tu chan: "
+string_output_odd:		.asciiz "5. So cac phan tu le: "
+string_space:			.asciiz " "
+
 	.text
  main:
  	li	$t6, 1		# constant value 1
@@ -81,7 +84,38 @@ string_output_odd:	.asciiz "\tso cac phan tu le: "
  end_input:
  
  output:
+ 	print_output_notification:
+ 		li 	$v0, 4
+ 		
+ 		la 	$a0, string_output_notification
+ 		syscall
+ 		
+ 	addi 	$t1, $zero, 0 	# index $t1 = 0
+ 	la 	$t3, array	# load address of array to $t3
+ 	for_output_array:
+ 		beq 	$t1, $s0, initialize
+ 
+ 		print_element:
+ 			li 	$v0, 1
+ 			
+ 			lw	$t4, 0($t3)
+ 			add	$a0, $zero, $t4
+ 			syscall
+ 		
+ 		print_space:
+ 			li 	$v0, 4
+ 			la	$a0, string_space
+ 			syscall
+ 				
+ 		addi 	$t3, $t3, 4
+ 		addi 	$t1, $t1, 1
+ 		j 	for_output_array
+ 	
  	initialize:
+ 		li 	$v0, 4
+ 		la 	$a0, escape_sequence
+ 		syscall
+ 		
  		la 	$t3, array 	# t3 = base address of array
  		lw 	$s3, 0($t3)	# sum $s3 = a[0]
  		add 	$s4, $zero, $s3 # min $s4 = a[0]
